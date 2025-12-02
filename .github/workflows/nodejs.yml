@@ -30,5 +30,43 @@ jobs:
             ${{ runner.os }}-node-
 
       - run: npm i
-      - run: npm test
-      - run: npm run test:nestjs
+
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-unit
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - run: npm i
+      - name: Run unit tests
+        run: npm test
+
+  nestjs-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-nestjs
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - run: npm i
+      - name: Run NestJS tests
+        run: npm run test:nestjs
