@@ -2,7 +2,7 @@
 
 <br/>
 
-## A detailed guide to modern testing with Node.js
+## A detailed guide to modern testing with Node.js 
 
 **1. ✅ 50+ Best Practices List -** Detailed instructions on how to write modern tests in the RIGHT way
 
